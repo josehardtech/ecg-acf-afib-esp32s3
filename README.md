@@ -52,7 +52,7 @@ The analyses added during the peer review (Access-2026-50898) do **not** replace
 
 | Analysis (manuscript location) | Script | Result files in `analysis/results/` |
 |---|---|---|
-| Patient-clustered bootstrap CIs and paired ΔAUC / McNemar (Sec. III, Tables 5–7) | `analysis/paired_stats_patient.py` | `paired_stats_patient/` |
+| Patient-clustered bootstrap CIs and paired ΔAUC / McNemar (Sec. III, Tables 5–7) | `analysis/paired_stats_patient.py`, `analysis/baselines_patient_ci.py` | `paired_stats_patient/` |
 | ACF scaler refitted within each training fold (Sec. III-E) | `notebooks/architectures/ARCH_variants_v4.ipynb`, `notebooks/scripts/run_v4.sh`, `analysis/consolidate_v4.py` | `v4_fold_scaler_comparison.csv`, `v4_scaler_fold_diag.csv`; model in `models/fold_scaler_seed42` |
 | Float32 versus INT8 (Sec. III) | same as above | `v4_float32_vs_int8.csv`, `v4_float32_vs_int8_table5.csv` |
 | Concatenation without gate, seeds 42–44 (Sec. III-F, Table 7) | `notebooks/scripts/run_no_gate_seeds.sh`, `analysis/consolidate_no_gate_seeds.py` | `no_gate_seeds_runs.csv`, `no_gate_seeds_deltas.csv`, `arch_summary.csv` |
