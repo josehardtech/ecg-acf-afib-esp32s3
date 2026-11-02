@@ -1,0 +1,87 @@
+{
+  "variant": "Ablation #1 - No-LOESS/NLM (Butterworth only)",
+  "variant_id": "ABL1_NO_LOESS_NLM",
+  "split": "patient-aware (StratifiedGroupKFold)",
+  "timestamp": "2026-09-27T14:10:36.300286",
+  "holdout": {
+    "n_total": 4025,
+    "n_afib": 471,
+    "n_sr": 3554
+  },
+  "thresholds": {
+    "tau_float32_youden": 0.7915902137756348,
+    "tau_int8_firmware": 0.8125
+  },
+  "float32_with_tau_float": {
+    "auc": 0.9970894909835155,
+    "sens": 0.9702760084719686,
+    "spec": 0.9867754642628397,
+    "f1": 0.9374358974262827
+  },
+  "int8_with_tau_firmware": {
+    "AUC": 0.9972355540899462,
+    "Sensitivity": 0.9617834394904459,
+    "Specificity": 0.9879009566685425,
+    "PPV": 0.9133064516129032,
+    "NPV": 0.9948994049305753,
+    "F1-Score": 0.9369183040330921,
+    "Accuracy": 0.9848447204968944
+  },
+  "int8_ci95": {
+    "AUC": [
+      0.9960431506753675,
+      0.9982421952228949
+    ],
+    "Sensitivity": [
+      0.9422680412371134,
+      0.977733918128655
+    ],
+    "Specificity": [
+      0.9843129550444932,
+      0.9912034897970409
+    ],
+    "PPV": [
+      0.8872141853607324,
+      0.9362956431296392
+    ],
+    "NPV": [
+      0.9923370486850064,
+      0.9969191075029183
+    ],
+    "F1-Score": [
+      0.9209382494004795,
+      0.9513786116983791
+    ],
+    "Accuracy": [
+      0.9813664596273292,
+      0.9883229813664596
+    ]
+  },
+  "int8_confusion": {
+    "TP": 453,
+    "FN": 18,
+    "FP": 43,
+    "TN": 3511
+  },
+  "int8_auc_by_domain": {
+    "CH": 0.9982449943356118,
+    "PTB": 0.9963535967578521
+  },
+  "bootstrap": {
+    "n": 1000,
+    "seed": 42,
+    "method": "percentile"
+  },
+  "best_fold": 2,
+  "determinism": {
+    "seed": 42,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": true,
+    "torch": "2.12.0.dev20260304+cu128"
+  },
+  "sha256": {
+    "model_pt": "f75837ce9678ebd64e0818fc1cadb9e69f7e314c753904a35101289f2f480a95",
+    "tflite": "a7582a6d1dd772754886b242c2c23a9c1fd36a7dbf7d261e4761e14b5e086b2e"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "variant": "Ablation #1 OAT - arch_mobilenet",
+  "variant_id": "ABL1_OAT_arch_mobilenet",
+  "split": "patient-aware (StratifiedGroupKFold)",
+  "timestamp": "2026-10-03T19:21:15.062171",
+  "holdout": {
+    "n_total": 4025,
+    "n_afib": 471,
+    "n_sr": 3554
+  },
+  "thresholds": {
+    "tau_float32_youden": 0.5602450966835022,
+    "tau_int8_firmware": 0.6484375
+  },
+  "float32_with_tau_float": {
+    "auc": 0.9939322577831622,
+    "sens": 0.9766454352234257,
+    "spec": 0.9662352279094929,
+    "f1": 0.8753568030363906
+  },
+  "int8_with_tau_firmware": {
+    "AUC": 0.9937422861355346,
+    "Sensitivity": 0.9617834394904459,
+    "Specificity": 0.9727068092290377,
+    "PPV": 0.8236363636363636,
+    "NPV": 0.994820143884892,
+    "F1-Score": 0.8873653281096964,
+    "Accuracy": 0.9714285714285714
+  },
+  "int8_ci95": {
+    "AUC": [
+      0.9916532551893427,
+      0.9954279540089415
+    ],
+    "Sensitivity": [
+      0.9433068385248836,
+      0.9773708742756362
+    ],
+    "Specificity": [
+      0.96742887665853,
+      0.977906330666803
+    ],
+    "PPV": [
+      0.789659168335639,
+      0.8543565315678993
+    ],
+    "NPV": [
+      0.9922922107895766,
+      0.9970923466748123
+    ],
+    "F1-Score": [
+      0.8650294963398948,
+      0.906641642605069
+    ],
+    "Accuracy": [
+      0.9662111801242236,
+      0.9761490683229813
+    ]
+  },
+  "int8_confusion": {
+    "TP": 453,
+    "FN": 18,
+    "FP": 97,
+    "TN": 3457
+  },
+  "int8_auc_by_domain": {
+    "CH": 0.9963292855233513,
+    "PTB": 0.9917335359675785
+  },
+  "bootstrap": {
+    "n": 1000,
+    "seed": 42,
+    "method": "percentile"
+  },
+  "best_fold": 6,
+  "arch": "mobilenet",
+  "n_acf_lags": 5000,
+  "tflite_bytes": 105768,
+  "n_params": 59649,
+  "oat": {
+    "param": "arch",
+    "value": "mobilenet",
+    "name": "arch_mobilenet",
+    "split_seed": 42,
+    "train_seed": 42,
+    "focal_gamma": 2.0,
+    "focal_alpha": 0.8,
+    "dropout_head": 0.3,
+    "dropout_cls": 0.2,
+    "lr_initial": 0.004,
+    "weight_decay": 0.0001
+  },
+  "determinism": {
+    "seed": 42,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": true,
+    "torch": "2.12.0.dev20260304+cu128"
+  },
+  "sha256": {
+    "model_pt": "d101f0aca8c0f2e19d037167d889a4fe7487958e83a4ed5326edc276eeae96b7",
+    "tflite": "8de128cdf55878cc3425b698ed3fa56400a2a9d8a9b96863fc5a31f213f2b080"
+  }
+}

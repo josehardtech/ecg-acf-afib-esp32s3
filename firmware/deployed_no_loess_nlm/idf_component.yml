@@ -1,0 +1,12 @@
+## IDF Component Manager Manifest File
+dependencies:
+  idf:
+    version: '>=4.4.0'
+
+  ## ESP-DSP — vectorised signal processing (dot product, sub, mul, biquad)
+  espressif/esp-dsp: '*'
+
+  ## TFLite Micro with ESP-NN hardware acceleration (Xtensa LX7 assembly)
+  ## ESP-NN is enabled by default via -DESP_NN in the component CMakeLists.
+  ## On ESP32-S3, Conv1D/DepthwiseConv kernels use vector instructions.
+  espressif/esp-tflite-micro: '*'

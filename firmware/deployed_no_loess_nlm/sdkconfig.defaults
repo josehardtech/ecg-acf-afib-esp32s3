@@ -1,0 +1,37 @@
+# sdkconfig.defaults — XIAO ESP32S3 Sense
+# Apply with:  idf.py -DSDKCONFIG_DEFAULTS=sdkconfig.defaults reconfigure
+
+# ── Target ────────────────────────────────────────────────────────────────────
+CONFIG_IDF_TARGET="esp32s3"
+
+# ── CPU frequency ─────────────────────────────────────────────────────────────
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240=y
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_MHZ=240
+
+# ── PSRAM (8 MB Octal SPI, required for NLM + model buffers) ─────────────────
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_USE_MALLOC=y           # allows heap_caps_malloc(MALLOC_CAP_SPIRAM)
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=16384  # allocations < 16 KB stay in SRAM
+
+# ── FATFS / SD card ───────────────────────────────────────────────────────────
+CONFIG_FATFS_LFN_HEAP=y              # long file names (e.g. ecg_input.csv)
+CONFIG_FATFS_MAX_LFN=255
+
+# ── SDMMC ─────────────────────────────────────────────────────────────────────
+CONFIG_SDMMC_USE_GPIO_MATRIX=y       # required on ESP32S3 for custom pin map
+
+# ── esp_timer ─────────────────────────────────────────────────────────────────
+CONFIG_ESP_TIMER_TASK_STACK_SIZE=4096
+
+# ── Stack sizes ───────────────────────────────────────────────────────────────
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192  # main task: pipeline alloc + SD I/O
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+CONFIG_LOG_MAXIMUM_LEVEL_DEBUG=y     # enable ESP_LOGD in filter modules
+
+# ── ESP-DSP ───────────────────────────────────────────────────────────────────
+CONFIG_DSP_OPTIMIZATIONS_ENABLED=y  # enables Xtensa-optimised paths in ESP-DSP
+CONFIG_NN_OPTIMIZED=y

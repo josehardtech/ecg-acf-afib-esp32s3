@@ -1,0 +1,12 @@
+idf_component_register(
+    SRCS
+        "tflite_inference.cc"
+    INCLUDE_DIRS
+        "."
+    REQUIRES
+        esp_system
+        heap
+        log
+        esp_timer
+        espressif__esp-tflite-micro
+)
