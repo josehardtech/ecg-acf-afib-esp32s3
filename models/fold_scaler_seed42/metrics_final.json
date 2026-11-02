@@ -1,0 +1,105 @@
+{
+  "variant": "Ablation #1 OAT - v4_fold_scaler_seed42",
+  "variant_id": "ABL1_OAT_v4_fold_scaler_seed42",
+  "split": "patient-aware (StratifiedGroupKFold)",
+  "timestamp": "2026-11-01T17:17:28.442066",
+  "holdout": {
+    "n_total": 4025,
+    "n_afib": 471,
+    "n_sr": 3554
+  },
+  "thresholds": {
+    "tau_float32_youden": 0.6742101311683655,
+    "tau_int8_firmware": 0.61328125
+  },
+  "float32_with_tau_float": {
+    "auc": 0.9971629705830696,
+    "sens": 0.9766454352234257,
+    "spec": 0.989026449068686,
+    "f1": 0.9484536082376448
+  },
+  "int8_with_tau_firmware": {
+    "AUC": 0.9976740421067974,
+    "Sensitivity": 0.9787685774946921,
+    "Specificity": 0.9859313449634215,
+    "PPV": 0.9021526418786693,
+    "NPV": 0.9971542401821286,
+    "F1-Score": 0.9389002036659878,
+    "Accuracy": 0.9850931677018634
+  },
+  "int8_ci95": {
+    "AUC": [
+      0.9965048442309591,
+      0.9986838850360754
+    ],
+    "Sensitivity": [
+      0.9645213106676521,
+      0.9900229127543728
+    ],
+    "Specificity": [
+      0.9822583937871101,
+      0.9893825832252384
+    ],
+    "PPV": [
+      0.8754880070939471,
+      0.9255537998986284
+    ],
+    "NPV": [
+      0.995182771323321,
+      0.9985857321701916
+    ],
+    "F1-Score": [
+      0.9222677404295052,
+      0.9525619570441373
+    ],
+    "Accuracy": [
+      0.9813664596273292,
+      0.9883229813664596
+    ]
+  },
+  "int8_confusion": {
+    "TP": 461,
+    "FN": 10,
+    "FP": 50,
+    "TN": 3504
+  },
+  "int8_auc_by_domain": {
+    "CH": 0.9983738750779649,
+    "PTB": 0.9968186423505572
+  },
+  "bootstrap": {
+    "n": 1000,
+    "seed": 42,
+    "method": "percentile"
+  },
+  "best_fold": 5,
+  "arch": "dual",
+  "n_acf_lags": 5000,
+  "tflite_bytes": 193504,
+  "n_params": 138801,
+  "oat": {
+    "fold_scaler": true,
+    "param": "arch",
+    "value": "",
+    "name": "v4_fold_scaler_seed42",
+    "split_seed": 42,
+    "train_seed": 42,
+    "focal_gamma": 2.0,
+    "focal_alpha": 0.8,
+    "dropout_head": 0.3,
+    "dropout_cls": 0.2,
+    "lr_initial": 0.004,
+    "weight_decay": 0.0001
+  },
+  "determinism": {
+    "seed": 42,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": true,
+    "torch": "2.12.0.dev20260304+cu128"
+  },
+  "sha256": {
+    "model_pt": "a8ad1cfcefd4a2d433c773c1925fd8f444ea666180e940d51e911e193c7130ba",
+    "tflite": "61be0f5c9f8e7ff1bcb47bc7534f28059c593597b36bce348e9bb9b155282cbc"
+  }
+}
