@@ -1,0 +1,7 @@
+build/
+managed_components/
+.ipynb_checkpoints/
+.vscode/
+sdkconfig.old
+*.log.bak
+__pycache__/
