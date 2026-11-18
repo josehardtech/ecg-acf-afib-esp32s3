@@ -36,13 +36,13 @@ normalization). The file names in `splits/` identify each record (`NNNNN_hr.csv`
 
 ## Version cited in the article
 
-The article (IEEE Access, Access-2026-50898) cites commit `COMMITHASH` of this repository.
+The article (IEEE Access, Access-2026-50898) cites commit `3a0eb24` of this repository.
 To obtain exactly that version:
 
 ```bash
 git clone https://github.com/josehardtech/ecg-acf-afib-esp32s3
 cd ecg-acf-afib-esp32s3
-git checkout COMMITHASH
+git checkout 3a0eb24
 ```
 
 ## Software environment
