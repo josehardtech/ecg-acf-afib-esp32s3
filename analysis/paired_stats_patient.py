@@ -13,7 +13,7 @@ Agrupamento:
   CSN e Georgia: cada registro é um paciente distinto.
 
 Uso:
-  cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/
+  cd $ECG_WORK/
   conda activate pytorch_env
   python paired_stats_patient.py                    # tudo
   python paired_stats_patient.py --georgia PASTA    # inclui o Georgia (pasta com holdout_probs_int8.csv)
@@ -27,15 +27,20 @@ import argparse
 import os
 import re
 import sys
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 import numpy as np
 import pandas as pd
 from scipy.stats import binomtest, rankdata
 from sklearn.metrics import roc_auc_score
 
-ROOT = '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao'
+ROOT = WORK
 OAT = f'{ROOT}/Sensibilidade_OAT'
-PTBXL_DB = '/mnt/windows/Doutorado/Datasets/PTB_XL_Raw/ptbxl_database.csv'
+PTBXL_DB = f'{DATA}/PTB_XL_Raw/ptbxl_database.csv'
 N_BOOT, SEED = 2000, 42
 
 # ── Configurações (nome -> pasta) ────────────────────────────────────────────

@@ -3,10 +3,16 @@ Compara o results.csv gravado pela placa (firmware v3) com as predições LiteRT
 para os 4.025 registros de teste, e resume as latências por estágio.
 
 Uso:
-  cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/
+  cd $ECG_WORK/
   python compare_board_python.py results.csv [--py holdout_probs_int8.csv --q 80]
 """
 import sys
+import os
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 import numpy as np
 import pandas as pd
@@ -15,7 +21,7 @@ from sklearn.metrics import roc_auc_score
 import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument('results_csv')
-ap.add_argument('--py', default='/home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Ablation_LOESS_NLM_v3_ok/holdout_probs_int8.csv',
+ap.add_argument('--py', default=f'{WORK}/Ablation_LOESS_NLM_v3_ok/holdout_probs_int8.csv',
                 help='holdout_probs_int8.csv do mesmo modelo (Python)')
 ap.add_argument('--q', type=int, default=80, help='MODEL_THRESHOLD_Q do firmware (model_params.h)')
 args = ap.parse_args()

@@ -9,9 +9,14 @@ import numpy as np, pandas as pd
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 CSV = sys.argv[1] if len(sys.argv) > 1 else \
-    '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Ablation_LOESS_NLM_v3_ok/holdout_probs_int8.csv'
+    f'{WORK}/Ablation_LOESS_NLM_v3_ok/holdout_probs_int8.csv'
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.dirname(os.path.abspath(CSV))
 TAU_INT8 = 80                      # tau = 0.8125  <=>  saída INT8 >= 80
 

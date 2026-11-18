@@ -34,15 +34,80 @@ Lead I is extracted to one CSV per record (5,000 samples, millivolts, no resampl
 normalization). The file names in `splits/` identify each record (`NNNNN_hr.csv` = PTB-XL `ecg_id`;
 `JSxxxxx.csv` = CSN record; `Exxxxx_*.csv` = Georgia record).
 
+## Version cited in the article
+
+The article (IEEE Access, Access-2026-50898) cites commit `COMMITHASH` of this repository.
+To obtain exactly that version:
+
+```bash
+git clone https://github.com/josehardtech/ecg-acf-afib-esp32s3
+cd ecg-acf-afib-esp32s3
+git checkout COMMITHASH
+```
+
+## Software environment
+
+| Component | Pinned version | File |
+|---|---|---|
+| Python and packages (training, conversion, analysis) | see file | `environment/requirements.txt`, `environment/environment.yml` |
+| ESP-IDF | v5.5.3 | `firmware/*/dependencies.lock` |
+| `espressif/esp-tflite-micro` | 1.3.5 | `firmware/*/dependencies.lock` |
+| `espressif/esp-nn` | 1.1.2 | `firmware/*/dependencies.lock` |
+| `espressif/esp-dsp` | 1.7.1 | `firmware/*/dependencies.lock` |
+
+```bash
+conda env create -f environment/environment.yml      # or: pip install -r environment/requirements.txt
+conda activate ecg-acf-afib
+```
+
+The environment files contain only cross-platform package versions (no build strings).
+Training was run on Linux with an NVIDIA GPU; deterministic settings are fixed in the notebooks.
+
+## Paths
+
+The scripts were written for the authors' folders. They read two environment variables, whose
+defaults are the authors' paths:
+
+| Variable | Content |
+|---|---|
+| `ECG_DATA` | Lead I CSV folders (`Chinese_Lead_I_AFIB`, `Chinese_Lead_I_SR`, `PTB_XL_Lead_I_AFIB`, `PTB_XL_Lead_I_SR`) and `PTB_XL_Raw/ptbxl_database.csv` |
+| `ECG_WORK` | Working folder where the notebooks write models and results |
+
+```bash
+export ECG_DATA=/path/to/Datasets
+export ECG_WORK=/path/to/work
+```
+
+Scripts that only read released result files also accept the file as an argument and run directly on
+this repository, for example:
+
+```bash
+python analysis/make_fig4.py models/deployed_no_loess_nlm/holdout_probs_int8.csv .
+python analysis/compare_board_python.py analysis/results/results_board_v3.csv --py models/deployed_no_loess_nlm/holdout_probs_int8.csv
+```
+
+In the notebooks, the paths are set in the first code cell:
+
+| Notebooks | Variables to edit |
+|---|---|
+| `main`, `ablations`, `cross_domain` | `BASE` (output folder), `PTBXL_DB_CSV`, and the Lead I folders |
+| `sensitivity`, `architectures`, `baselines` | `OAT_ROOT` (output folder), `REF_DIR` (reference model), `PTBXL_DB_CSV` |
+| `external_validation` | `BASE_MODEL`, `GEORGIA_DIR`, `OUT_DIR`, `TRAIN_DIRS` |
+
+The shell scripts in `notebooks/scripts/` use `ECG_WORK` as their root folder.
+
 ## Reproducing the results
 
-1. Extract Lead I CSVs and place them in the folders expected by the notebooks
-   (`PATHS_CH`, `PATHS_PTB`; adjust the paths at the top of each notebook).
+1. Extract Lead I CSVs (see *Data*) and set the paths (see *Paths*).
 2. Run `notebooks/main` (PyTorch, deterministic training with `SEED = 42`). The partitions are regenerated
    with `StratifiedGroupKFold(random_state = 42)` and checked against `splits/`; the INT8 model must reproduce
    SHA-256 `a7582a6d1dd772754886b242c2c23a9c1fd36a7dbf7d261e4761e14b5e086b2e`.
 3. Run the scripts in `analysis/` for the patient-clustered confidence intervals, paired comparisons and
    threshold-transfer analysis.
+
+Board and host decisions: on the 4,025 test recordings the firmware reproduces the confusion matrix of the
+LiteRT INT8 model and 4,023 of the 4,025 decisions; two SR recordings (`JS20623.csv`, `JS37008.csv`) swap classes.
+`analysis/compare_board_python.py` reproduces this comparison from the released files.
 
 ## Original model and revision analyses
 
@@ -63,7 +128,7 @@ The analyses added during the peer review (Access-2026-50898) do **not** replace
 
 ## Firmware
 
-ESP-IDF v5.5, target `esp32s3`, components `espressif/esp-tflite-micro` and `espressif/esp-dsp`.
+ESP-IDF v5.5.3, target `esp32s3`; component versions are pinned in `dependencies.lock` (see *Software environment*).
 
 ```bash
 cd firmware/deployed_no_loess_nlm

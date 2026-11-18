@@ -7,19 +7,24 @@ Compara, no mesmo conjunto de teste (n = 4.025):
 Usa ΔAUC pareado por bootstrap (2.000 reamostragens, semente 42), como na Tabela 7.
 
 Uso:
-  cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Sensibilidade_OAT/
+  cd $ECG_WORK/Sensibilidade_OAT/
   python consolidate_no_gate_seeds.py
 """
 import json
 import os
 import sys
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 import numpy as np
 import pandas as pd
 from sklearn.metrics import roc_auc_score
 
-ROOT = '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Sensibilidade_OAT'
-REF_DIR_V3 = '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Ablation_LOESS_NLM_v3_ok'
+ROOT = f'{WORK}/Sensibilidade_OAT'
+REF_DIR_V3 = f'{WORK}/Ablation_LOESS_NLM_v3_ok'
 N_BOOT, BOOT_SEED = 2000, 42
 
 RUNS = {

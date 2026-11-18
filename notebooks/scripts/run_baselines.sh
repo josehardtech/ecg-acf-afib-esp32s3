@@ -7,7 +7,7 @@
 # Pasta de trabalho: $ROOT/Baselines_E5_E7 (códigos e resultados)
 # Uso (com pytorch_env ativo):  nohup bash run_baselines.sh > baselines_execucao.log 2>&1 &
 # ═══════════════════════════════════════════════════════════════════════
-ROOT=/home/jose_alberto/Modelos_IEEE_Artigo_Revisao
+ROOT=${ECG_WORK:-/home/jose_alberto/Modelos_IEEE_Artigo_Revisao}
 DIR=$ROOT/Baselines_E5_E7
 export OAT_ROOT=$DIR
 export OAT_REF_DIR=$ROOT/Ablation_LOESS_NLM_v3_ok

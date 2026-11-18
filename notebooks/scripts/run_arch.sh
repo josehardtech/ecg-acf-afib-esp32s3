@@ -4,7 +4,7 @@
 # Uso (com pytorch_env ativo):  nohup bash run_arch.sh > arch_execucao.log 2>&1 &
 # Variações já concluídas (com metrics_final.json) são puladas.
 # ═══════════════════════════════════════════════════════════════════════
-ROOT=/home/jose_alberto/Modelos_IEEE_Artigo_Revisao
+ROOT=${ECG_WORK:-/home/jose_alberto/Modelos_IEEE_Artigo_Revisao}
 NB=$ROOT/Sensibilidade_OAT/ARCH_variants_v3.ipynb
 export OAT_ROOT=$ROOT/Sensibilidade_OAT
 export OAT_REF_DIR=$ROOT/Ablation_LOESS_NLM_v3_ok

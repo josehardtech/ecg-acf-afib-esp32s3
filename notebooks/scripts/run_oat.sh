@@ -7,7 +7,7 @@
 # Variações já concluídas (com metrics_final.json) são puladas, então o
 # script pode ser reiniciado sem refazer o que já terminou.
 # ═══════════════════════════════════════════════════════════════════════
-ROOT=/home/jose_alberto/Modelos_IEEE_Artigo_Revisao
+ROOT=${ECG_WORK:-/home/jose_alberto/Modelos_IEEE_Artigo_Revisao}
 NB=$ROOT/Sensibilidade_OAT/OAT_sensitivity_v3.ipynb
 export OAT_ROOT=$ROOT/Sensibilidade_OAT
 export OAT_REF_DIR=$ROOT/Ablation_LOESS_NLM_v3_ok

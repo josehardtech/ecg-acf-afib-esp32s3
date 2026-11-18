@@ -12,7 +12,7 @@ Saídas (em --out):
   scaler_params.h  StandardScaler da ACF (vazio se o modelo não usa ACF)
 
 Uso:
-  cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/
+  cd $ECG_WORK/
   # modelo implantado
   python export_firmware.py --model-dir Ablation_LOESS_NLM_v3_ok --out firmware_v3 --tag "v3 No-LOESS/NLM"
   # MobileNet-1D
@@ -24,6 +24,11 @@ import hashlib
 import os
 import pickle
 from datetime import datetime
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 import numpy as np
 

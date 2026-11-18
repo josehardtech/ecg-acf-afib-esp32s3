@@ -3,7 +3,7 @@
 Usa as mesmas funções e a mesma reamostragem de paired_stats_patient.py.
 
 Uso (na pasta onde está paired_stats_patient.py):
-  cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/
+  cd $ECG_WORK/
   conda activate pytorch_env
   python baselines_patient_ci.py
 """
@@ -11,6 +11,11 @@ import os, sys
 import numpy as np, pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import paired_stats_patient as ps
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 B = f'{ps.ROOT}/Baselines_E5_E7'
 RUNS = {

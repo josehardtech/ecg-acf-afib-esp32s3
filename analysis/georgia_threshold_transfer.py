@@ -17,19 +17,24 @@ Parte 2 — Recalibração do τ por site com n registros rotulados:
   e avalia nos 2.069 - n registros restantes. Repete R vezes.
 
 Uso:
-  cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/
+  cd $ECG_WORK/
   python georgia_threshold_transfer.py
 Saídas em Georgia/eval_ablation_loess_nlm_v3/threshold_transfer/:
   operating_points.csv | recalibration_curve.csv | recalibration_curve.pdf/.png
 """
 import os
 import sys
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 import numpy as np
 import pandas as pd
 
-IN_CSV = '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Georgia/eval_ablation_loess_nlm_v3/georgia_probs_int8.csv'
-OUT = '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Georgia/eval_ablation_loess_nlm_v3/threshold_transfer'
+IN_CSV = f'{WORK}/Georgia/eval_ablation_loess_nlm_v3/georgia_probs_int8.csv'
+OUT = f'{WORK}/Georgia/eval_ablation_loess_nlm_v3/threshold_transfer'
 
 TAU_DEPLOYED = 0.8125
 SPEC_INTERNAL = 0.9879        # especificidade do modelo implantado no teste interno

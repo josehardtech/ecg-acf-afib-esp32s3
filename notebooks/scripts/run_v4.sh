@@ -6,10 +6,10 @@
 #   v4_fold_scaler_seed42  escalonador da ACF ajustado dentro de cada fold
 #
 # Uso (com o ambiente pytorch_env ativo):
-#   cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Sensibilidade_OAT/
+#   cd $ECG_WORK/Sensibilidade_OAT/
 #   nohup bash run_v4.sh > v4.log 2>&1 &
 # ═══════════════════════════════════════════════════════════════════════
-ROOT=/home/jose_alberto/Modelos_IEEE_Artigo_Revisao
+ROOT=${ECG_WORK:-/home/jose_alberto/Modelos_IEEE_Artigo_Revisao}
 NB=$ROOT/Sensibilidade_OAT/ARCH_variants_v4.ipynb
 export OAT_ROOT=$ROOT/Sensibilidade_OAT
 export OAT_REF_DIR=$ROOT/Ablation_LOESS_NLM_v3_ok

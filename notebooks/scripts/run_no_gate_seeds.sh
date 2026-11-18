@@ -5,11 +5,11 @@
 # a referência, treino determinístico, mesmo critério de τ).
 #
 # Uso (com o ambiente pytorch_env ativo):
-#   cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Sensibilidade_OAT/
+#   cd $ECG_WORK/Sensibilidade_OAT/
 #   nohup bash run_no_gate_seeds.sh > no_gate_seeds.log 2>&1 &
 # Execuções já concluídas (com metrics_final.json) são puladas.
 # ═══════════════════════════════════════════════════════════════════════
-ROOT=/home/jose_alberto/Modelos_IEEE_Artigo_Revisao
+ROOT=${ECG_WORK:-/home/jose_alberto/Modelos_IEEE_Artigo_Revisao}
 NB=$ROOT/Sensibilidade_OAT/ARCH_variants_v3.ipynb
 export OAT_ROOT=$ROOT/Sensibilidade_OAT
 export OAT_REF_DIR=$ROOT/Ablation_LOESS_NLM_v3_ok

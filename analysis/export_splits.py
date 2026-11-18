@@ -23,18 +23,23 @@ import os
 import pickle
 import re
 import sys
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedGroupKFold
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else 'splits'
-R = '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao'
+R = WORK
 PKL = f'{R}/Ablation_LOESS_NLM_v3_ok/ablation_loess_nlm_calib_indices.pkl'
 TEST_CSV = f'{R}/Ablation_LOESS_NLM_v3_ok/holdout_probs_int8.csv'
 GEORGIA_CSV = f'{R}/Georgia/eval_ablation_loess_nlm_v3/georgia_probs_int8.csv'
-PTBXL_DB = '/mnt/windows/Doutorado/Datasets/PTB_XL_Raw/ptbxl_database.csv'
-DS = '/mnt/windows/Doutorado/Datasets'
+PTBXL_DB = f'{DATA}/PTB_XL_Raw/ptbxl_database.csv'
+DS = DATA
 ORDER = [('CSN', 'AFIB', f'{DS}/Chinese_Lead_I_AFIB'), ('CSN', 'SR', f'{DS}/Chinese_Lead_I_SR'),
          ('PTB-XL', 'AFIB', f'{DS}/PTB_XL_Lead_I_AFIB'), ('PTB-XL', 'SR', f'{DS}/PTB_XL_Lead_I_SR')]
 N_FOLDS, SPLIT_SEED = 10, 42

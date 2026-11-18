@@ -1,10 +1,15 @@
 import os, shutil, sys
 import pandas as pd
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 SD = sys.argv[1]                                    # ex.: /media/jose_alberto/ECG_SD
-DIRS = ['/mnt/windows/Doutorado/Datasets/Chinese_Lead_I_AFIB',
-        '/mnt/windows/Doutorado/Datasets/Chinese_Lead_I_SR',
-        '/mnt/windows/Doutorado/Datasets/PTB_XL_Lead_I_AFIB',
-        '/mnt/windows/Doutorado/Datasets/PTB_XL_Lead_I_SR']
+DIRS = [f'{DATA}/Chinese_Lead_I_AFIB',
+        f'{DATA}/Chinese_Lead_I_SR',
+        f'{DATA}/PTB_XL_Lead_I_AFIB',
+        f'{DATA}/PTB_XL_Lead_I_SR']
 t = pd.read_csv('Ablation_LOESS_NLM_v3_ok/holdout_probs_int8.csv')
 idx = {}
 for d in DIRS:

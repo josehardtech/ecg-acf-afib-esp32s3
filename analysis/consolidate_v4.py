@@ -10,7 +10,7 @@ Consolida as execuções v4 — Revisor 1, itens 4 (escalonador por fold) e 6 (f
      com escalonador por fold contra o implantado (ΔAUC, ΔSens, ΔSpec por paciente, McNemar).
 
 Uso:
-  cd /home/jose_alberto/Modelos_IEEE_Artigo_Revisao/Sensibilidade_OAT/
+  cd $ECG_WORK/Sensibilidade_OAT/
   python consolidate_v4.py
 """
 import glob
@@ -19,19 +19,24 @@ import json
 import os
 import re
 import sys
+# Paths: set ECG_WORK (working/results folder) and ECG_DATA (Lead I CSVs and PTB-XL metadata),
+# or edit the defaults below. See README, section 'Paths'.
+WORK = os.environ.get('ECG_WORK', '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao')
+DATA = os.environ.get('ECG_DATA', '/mnt/windows/Doutorado/Datasets')
+
 
 import numpy as np
 import pandas as pd
 from scipy.stats import binomtest, rankdata
 
-ROOT = '/home/jose_alberto/Modelos_IEEE_Artigo_Revisao'
+ROOT = WORK
 OAT = f'{ROOT}/Sensibilidade_OAT'
 DEPLOYED = f'{ROOT}/Ablation_LOESS_NLM_v3_ok'
 REF4 = f'{OAT}/v4_reference_seed42'
 FS4 = f'{OAT}/v4_fold_scaler_seed42'
 TABLE5 = {'Full': f'{ROOT}/Dual_cnn_branch_v3_ok', 'Abl1': DEPLOYED,
           'Abl2': f'{ROOT}/Ablation_CNN_LOESS_NLM_v3_ok', 'Abl3': f'{ROOT}/Ablation_All_Filters_RAW_v3_ok'}
-PTBXL_DB = '/mnt/windows/Doutorado/Datasets/PTB_XL_Raw/ptbxl_database.csv'
+PTBXL_DB = f'{DATA}/PTB_XL_Raw/ptbxl_database.csv'
 EXPECTED_SHA = 'a7582a6d1dd772754886b242c2c23a9c1fd36a7dbf7d261e4761e14b5e086b2e'
 N_BOOT, SEED = 2000, 42
 PTB_RE = re.compile(r'^(\d+)_(hr|lr)\.csv$')
