@@ -1,6 +1,9 @@
-# Python 3.11.14 on Linux x86_64
-# torch was installed as 2.12.0.dev20260304+cu128
-# jupyter: not installed in the authors' environment
+# Environment used for training, INT8 conversion and analysis: Python 3.11.14, Linux x86_64, CUDA 12.8.
+# PyTorch: the experiments used the nightly build 2.12.0.dev20260304+cu128, installed from the PyTorch
+# nightly index below. Nightly wheels are removed from that index after some time; if this build is no
+# longer available, install the nearest stable PyTorch release (results with other versions may differ).
+--extra-index-url https://download.pytorch.org/whl/nightly/cu128
+--pre
 torch==2.12.0.dev20260304
 tensorflow==2.19.0
 ai-edge-litert==2.1.0

@@ -36,13 +36,13 @@ normalization). The file names in `splits/` identify each record (`NNNNN_hr.csv`
 
 ## Version cited in the article
 
-The article (IEEE Access, Access-2026-50898) cites commit `3a0eb24` of this repository.
+The article (IEEE Access, Access-2026-50898) cites commit `COMMITHASH` of this repository.
 To obtain exactly that version:
 
 ```bash
 git clone https://github.com/josehardtech/ecg-acf-afib-esp32s3
 cd ecg-acf-afib-esp32s3
-git checkout 3a0eb24
+git checkout COMMITHASH
 ```
 
 ## Software environment
@@ -60,8 +60,10 @@ conda env create -f environment/environment.yml      # or: pip install -r enviro
 conda activate ecg-acf-afib
 ```
 
-The environment files contain only cross-platform package versions (no build strings).
-Training was run on Linux with an NVIDIA GPU; deterministic settings are fixed in the notebooks.
+The experiments were run with Python 3.11.14 on Linux x86_64 with an NVIDIA GPU (CUDA 12.8); deterministic
+settings are fixed in the notebooks. PyTorch was the nightly build 2.12.0.dev20260304, which the environment
+files install from the PyTorch nightly index; if that build is no longer available, use the nearest stable
+release (results obtained with other versions may differ).
 
 ## Paths
 
